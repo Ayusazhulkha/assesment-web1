@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website penugasan assesment Pengembangan Aplikasi Berbasis web </title>
+</head>
+<body>
+    <h1>Profil Mahasiswa</h1>
+    <img src="fotoayusa.jpg" alt="Foto Anda" width="100px">
+    <p>Nama: [Ayusa Zhulkha]</p>
+    <p>NIM: [6701223028]</p>
+    <p>Kelas: [D3SI-46-04]</p>
+    
+    <form onsubmit="return cekBuku()">
+        <label for="jumlah">Jumlah Buku:</label>
+        <input type="number" id="jumlah" name="jumlah" required>
+        <br>
+        <label for="buku">Pilih Judul Buku:</label>
+        <select id="buku" name="buku">
+            <option value="sherlock">Sherlock</option>
+            <option value="lupin">Lupin</option>
+            <option value="aladin">Aladin</option>
+        </select>
+        <br>
+        <br>
+        <button type="submit">Cek Ketersediaan Buku</button>
+    </form>
+    
+    <script>
+        let buku = [
+            {"nama": "sherlock", "jumlah":2},
+            {"nama": "lupin", "jumlah":2},
+            {"nama": "aladin", "jumlah":2},
+        ];
+        
+        function cekBuku() {
+            let jumlah = document.getElementById("jumlah").value;
+            let pilihanBuku = document.getElementById("buku").value;
+            
+            if (jumlah === "") {
+                alert("stok buku tidak boleh kosong!");
+                return false;
+            }
+            
+            let bukuDitemukan = false;
+            for (let i = 0; i < buku.length; i++) {
+                if (buku[i].nama === pilihanBuku) {
+                    bukuDitemukan = true;
+                    let stokBuku = buku[i].jumlah;
+                    
+                    if (jumlah > stokBuku) {
+                        alert("stok buku yang Anda cari tidak ditemukan");
+                        return false;
+                    } else {
+                        alert("Silahkan ambil buku " + pilihanBuku);
+                        return true;
+                    }
+                }
+            }
+            
+            if (!bukuDitemukan) {
+                alert("stok Buku yang Anda cari tidak ditemukan!");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
